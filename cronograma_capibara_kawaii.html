@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;background:#fff5f9;min-height:100vh;padding:16px}
+  h1{text-align:center;font-size:20px;font-weight:800;color:#c2587a;letter-spacing:0.5px;margin-bottom:4px}
+  .subtitle{text-align:center;font-size:12px;color:#d48fa8;margin-bottom:14px}
+  .days-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+  .day-btn{padding:6px 14px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#c2587a;cursor:pointer;transition:all .2s}
+  .day-btn.active{background:#f9c5d9;color:#8b3054}
+  .day-btn:hover{background:#fde8f0}
+  .progress-bar-wrap{background:#fde8f0;border-radius:20px;height:14px;margin:0 8px 14px;overflow:hidden}
+  .progress-bar{height:100%;background:linear-gradient(90deg,#f9a8cc,#e879a0);border-radius:20px;transition:width .4s ease}
+  .progress-label{text-align:center;font-size:11px;color:#c2587a;font-weight:700;margin-bottom:14px}
+  .section-header{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:12px;margin:8px 0 4px;font-size:12px;font-weight:800}
+  .section-header .capibara-icon{font-size:18px}
+  .task-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;margin-bottom:4px;cursor:pointer;transition:all .2s;border:2px solid transparent;position:relative}
+  .task-item:hover{transform:scale(1.01)}
+  .task-item.done{opacity:.65}
+  .task-item.done .task-name{text-decoration:line-through;color:#b0b0b0}
+  .check-circle{width:26px;height:26px;min-width:26px;border-radius:50%;border:2.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .25s;background:#fff}
+  .check-circle.checked{background:currentColor}
+  .check-circle.checked::after{content:'✓';color:#fff;font-size:13px;font-weight:800}
+  .hora{font-size:10px;font-weight:800;min-width:38px;text-align:right}
+  .task-name{font-size:13px;font-weight:600;flex:1;line-height:1.3}
+  .capibara-reward{position:fixed;pointer-events:none;font-size:32px;animation:floatUp 1.2s ease-out forwards;z-index:9999}
+  @keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(1.4)}}
+
+  .sec-manana .section-header{background:#fde8f0;color:#b5476d}
+  .sec-manana .task-item{background:#fff5f9;--c:#e879a0}
+  .sec-manana .task-item:hover{background:#fde8f0;border-color:#f9c5d9}
+  .sec-manana .check-circle{color:#e879a0;border-color:#f9a8cc}
+
+  .sec-viaje .section-header{background:#fff8e1;color:#b58a00}
+  .sec-viaje .task-item{background:#fffde7;--c:#f9b800}
+  .sec-viaje .task-item:hover{background:#fff8c8;border-color:#f9e0a0}
+  .sec-viaje .check-circle{color:#f9b800;border-color:#f9d86e}
+
+  .sec-trabajo .section-header{background:#e8f5e9;color:#3a7d44}
+  .sec-trabajo .task-item{background:#f1fbf2;--c:#4caf6a}
+  .sec-trabajo .task-item:hover{background:#dff2e1;border-color:#a5d9af}
+  .sec-trabajo .check-circle{color:#4caf6a;border-color:#a5d9af}
+
+  .sec-noche .section-header{background:#ede7f6;color:#6a3fa0}
+  .sec-noche .task-item{background:#f5f0fc;--c:#9c6fce}
+  .sec-noche .task-item:hover{background:#e9e0f8;border-color:#c9a8e8}
+  .sec-noche .check-circle{color:#9c6fce;border-color:#c9a8e8}
+
+  .sec-dormir .section-header{background:#fce4ec;color:#9c2d4e}
+  .sec-dormir .task-item{background:#fdf0f5;--c:#e87aa0}
+  .sec-dormir .task-item:hover{background:#fde2ec;border-color:#f4afc8}
+  .sec-dormir .check-circle{color:#e87aa0;border-color:#f4afc8}
+
+  .capibara-deco{text-align:center;font-size:28px;margin:8px 0 4px}
+  .footer-cap{text-align:center;font-size:12px;color:#d48fa8;margin-top:14px;font-weight:700}
+</style>
+
+<div id="app">
+  <div style="text-align:center;font-size:34px;margin-bottom:2px">🐾</div>
+  <h1>✿ Mi Cronograma Kawaii ✿</h1>
+  <p class="subtitle">¡Haz clic en cada tarea para marcarla! Las capibaras te aplaudirán 🌸</p>
+
+  <div class="days-tabs" id="dayTabs"></div>
+  <div class="progress-label" id="progressLabel"></div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div id="taskList"></div>
+  <div class="footer-cap" id="footerMsg">🐾 ¡Tú puedes, campeona! 🐾</div>
+</div>
+
+<script>
+const DAYS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+
+const SECTIONS = [
+  {key:'manana', label:'🌸 Mañana', cap:'🐾', items:[
+    {h:'06:30',t:'Despertar ☀️'},
+    {h:'06:35',t:'Fibra + Probiótico + B12 💊'},
+    {h:'06:40',t:'Ducha 🚿'},
+    {h:'07:00',t:'Skincare mañana 🧴✨'},
+    {h:'07:15',t:'Vestirse 👗'},
+    {h:'07:30',t:'Ordenar mochila 🎒'},
+  ]},
+  {key:'viaje', label:'🍋 Viaje ida', cap:'🚌', items:[
+    {h:'07:45',t:'Salida de casa 🚪'},
+    {h:'07:45',t:'Viaje al trabajo 🚌'},
+    {h:'08:30',t:'Llegada al trabajo'},
+  ]},
+  {key:'trabajo', label:'🌿 Trabajo', cap:'💼', items:[
+    {h:'09:00',t:'Inicio jornada laboral 💼'},
+    {h:'14:00',t:'Almuerzo + Berberina 💊'},
+    {h:'17:45',t:'Colación 🍎'},
+    {h:'18:30',t:'Magnesio + Citrato de potasio 💊'},
+    {h:'18:30',t:'Fin jornada laboral'},
+    {h:'19:30',t:'Gimnasio 💪'},
+    {h:'20:45',t:'Fin gimnasio'},
+  ]},
+  {key:'viaje', label:'🍋 Viaje vuelta', cap:'🏠', items:[
+    {h:'20:45',t:'Viaje a casa 🚌'},
+  ]},
+  {key:'noche', label:'💜 Noche', cap:'🌙', items:[
+    {h:'21:30',t:'Llegada a casa 🏠'},
+    {h:'21:30',t:'Lavar la loza (llegada) 🍽️'},
+    {h:'21:45',t:'Once + Inositol 💊🍵'},
+    {h:'22:00',t:'Ducha 🚿'},
+    {h:'22:15',t:'Skincare noche 🧴🌙'},
+    {h:'22:30',t:'Masaje / Relajación 💆'},
+    {h:'22:40',t:'Caminata 30 min 🚶'},
+    {h:'23:10',t:'Duolingo 10 min 🦉'},
+    {h:'23:20',t:'Lectura Lezhin 15 min 📖💕'},
+    {h:'23:35',t:'Empacar comida del día siguiente 🥗'},
+    {h:'23:50',t:'Ordenar bolso 👜'},
+    {h:'23:55',t:'Jugar Genshin Impact 🎮'},
+    {h:'00:05',t:'Creatina 💊'},
+    {h:'00:10',t:'Lavar la loza (noche) 🍽️'},
+  ]},
+  {key:'dormir', label:'😴 Dormir', cap:'🌙', items:[
+    {h:'00:20',t:'Prepararse para dormir 🌙'},
+    {h:'00:30',t:'DORMIR 😴  (6h → despertar 06:30)'},
+  ]},
+];
+
+const CAPIBARAS = ['🐾','🌸','✨','💕','🌺','🥰','🎀'];
+const MSGS = [
+  '🐾 ¡Tú puedes, campeona! 🐾',
+  '🌸 ¡Vas increíble! 🌸',
+  '✨ ¡La capibara te admira! ✨',
+  '💕 ¡Sigue así, princesa! 💕',
+  '🎀 ¡Casi terminas el día! 🎀',
+  '🥰 ¡Eres la mejor capibara! 🥰',
+  '🌺 ¡100%! ¡Orgullosísimas de ti! 🌺',
+];
+
+const TOTAL = SECTIONS.reduce((s,sec)=>s+sec.items.length,0);
+let currentDay = 0;
+let state = {};
+
+DAYS.forEach((_,d)=>{
+  state[d] = {};
+  SECTIONS.forEach((sec,si)=>{
+    sec.items.forEach((_,ii)=>{
+      state[d][`${si}-${ii}`] = false;
+    });
+  });
+});
+
+function getDone(d){return Object.values(state[d]).filter(Boolean).length}
+
+function renderTabs(){
+  const wrap = document.getElementById('dayTabs');
+  wrap.innerHTML = DAYS.map((day,i)=>`
+    <button class="day-btn${i===currentDay?' active':''}" onclick="switchDay(${i})">${day}</button>
+  `).join('');
+}
+
+function renderProgress(){
+  const done = getDone(currentDay);
+  const pct = Math.round(done/TOTAL*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = `✿ ${done} de ${TOTAL} tareas completadas (${pct}%) ✿`;
+  const msgIdx = Math.min(Math.floor(pct/17),MSGS.length-1);
+  document.getElementById('footerMsg').textContent = MSGS[msgIdx];
+}
+
+function renderTasks(){
+  const d = currentDay;
+  const list = document.getElementById('taskList');
+  let html = '';
+  SECTIONS.forEach((sec,si)=>{
+    html += `<div class="sec-${sec.key}">
+      <div class="section-header"><span class="capibara-icon">${sec.cap}</span>${sec.label}</div>`;
+    sec.items.forEach((item,ii)=>{
+      const key = `${si}-${ii}`;
+      const done = state[d][key];
+      html += `<div class="task-item${done?' done':''}" onclick="toggleTask(${d},'${key}',event)">
+        <div class="check-circle${done?' checked':''}"></div>
+        <span class="hora">${item.h}</span>
+        <span class="task-name">${item.t}</span>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  list.innerHTML = html;
+}
+
+function toggleTask(d, key, e){
+  state[d][key] = !state[d][key];
+  if(state[d][key]) spawnCapibara(e);
+  renderTasks();
+  renderProgress();
+}
+
+function spawnCapibara(e){
+  const el = document.createElement('div');
+  el.className = 'capibara-reward';
+  el.textContent = CAPIBARAS[Math.floor(Math.random()*CAPIBARAS.length)];
+  const x = e ? e.clientX : window.innerWidth/2;
+  const y = e ? e.clientY : window.innerHeight/2;
+  el.style.left = (x-16)+'px';
+  el.style.top  = (y-16)+'px';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(), 1200);
+}
+
+function switchDay(i){
+  currentDay = i;
+  renderTabs();
+  renderTasks();
+  renderProgress();
+}
+
+switchDay(0);
+</script>
