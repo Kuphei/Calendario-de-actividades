@@ -1,212 +1,247 @@
 <!DOCTYPE html>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Nunito',sans-serif;background:#fff5f9;min-height:100vh;padding:16px}
-  h1{text-align:center;font-size:20px;font-weight:800;color:#c2587a;letter-spacing:0.5px;margin-bottom:4px}
-  .subtitle{text-align:center;font-size:12px;color:#d48fa8;margin-bottom:14px}
-  .days-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
-  .day-btn{padding:6px 14px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#c2587a;cursor:pointer;transition:all .2s}
-  .day-btn.active{background:#f9c5d9;color:#8b3054}
-  .day-btn:hover{background:#fde8f0}
-  .progress-bar-wrap{background:#fde8f0;border-radius:20px;height:14px;margin:0 8px 14px;overflow:hidden}
-  .progress-bar{height:100%;background:linear-gradient(90deg,#f9a8cc,#e879a0);border-radius:20px;transition:width .4s ease}
-  .progress-label{text-align:center;font-size:11px;color:#c2587a;font-weight:700;margin-bottom:14px}
-  .section-header{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:12px;margin:8px 0 4px;font-size:12px;font-weight:800}
-  .section-header .capibara-icon{font-size:18px}
-  .task-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;margin-bottom:4px;cursor:pointer;transition:all .2s;border:2px solid transparent;position:relative}
-  .task-item:hover{transform:scale(1.01)}
-  .task-item.done{opacity:.65}
-  .task-item.done .task-name{text-decoration:line-through;color:#b0b0b0}
-  .check-circle{width:26px;height:26px;min-width:26px;border-radius:50%;border:2.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .25s;background:#fff}
-  .check-circle.checked{background:currentColor}
-  .check-circle.checked::after{content:'✓';color:#fff;font-size:13px;font-weight:800}
-  .hora{font-size:10px;font-weight:800;min-width:38px;text-align:right}
-  .task-name{font-size:13px;font-weight:600;flex:1;line-height:1.3}
-  .capibara-reward{position:fixed;pointer-events:none;font-size:32px;animation:floatUp 1.2s ease-out forwards;z-index:9999}
-  @keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(1.4)}}
-
-  .sec-manana .section-header{background:#fde8f0;color:#b5476d}
-  .sec-manana .task-item{background:#fff5f9;--c:#e879a0}
-  .sec-manana .task-item:hover{background:#fde8f0;border-color:#f9c5d9}
-  .sec-manana .check-circle{color:#e879a0;border-color:#f9a8cc}
-
-  .sec-viaje .section-header{background:#fff8e1;color:#b58a00}
-  .sec-viaje .task-item{background:#fffde7;--c:#f9b800}
-  .sec-viaje .task-item:hover{background:#fff8c8;border-color:#f9e0a0}
-  .sec-viaje .check-circle{color:#f9b800;border-color:#f9d86e}
-
-  .sec-trabajo .section-header{background:#e8f5e9;color:#3a7d44}
-  .sec-trabajo .task-item{background:#f1fbf2;--c:#4caf6a}
-  .sec-trabajo .task-item:hover{background:#dff2e1;border-color:#a5d9af}
-  .sec-trabajo .check-circle{color:#4caf6a;border-color:#a5d9af}
-
-  .sec-noche .section-header{background:#ede7f6;color:#6a3fa0}
-  .sec-noche .task-item{background:#f5f0fc;--c:#9c6fce}
-  .sec-noche .task-item:hover{background:#e9e0f8;border-color:#c9a8e8}
-  .sec-noche .check-circle{color:#9c6fce;border-color:#c9a8e8}
-
-  .sec-dormir .section-header{background:#fce4ec;color:#9c2d4e}
-  .sec-dormir .task-item{background:#fdf0f5;--c:#e87aa0}
-  .sec-dormir .task-item:hover{background:#fde2ec;border-color:#f4afc8}
-  .sec-dormir .check-circle{color:#e87aa0;border-color:#f4afc8}
-
-  .capibara-deco{text-align:center;font-size:28px;margin:8px 0 4px}
-  .footer-cap{text-align:center;font-size:12px;color:#d48fa8;margin-top:14px;font-weight:700}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#fff5f9;padding:14px}
+h1{text-align:center;font-size:21px;font-weight:800;color:#c2587a;margin-bottom:2px}
+.subtitle{text-align:center;font-size:11px;color:#d48fa8;margin-bottom:12px}
+.days-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+.day-btn{padding:6px 13px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#c2587a;cursor:pointer;transition:all .2s}
+.day-btn.active{background:#f9c5d9;color:#8b3054}
+.day-btn:hover{background:#fde8f0}
+.prog-label{text-align:center;font-size:11px;color:#c2587a;font-weight:700;margin-bottom:5px}
+.prog-wrap{background:#fde8f0;border-radius:20px;height:13px;margin:0 8px 12px;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,#f9a8cc,#e879a0);border-radius:20px;transition:width .4s ease}
+.sec-header{display:flex;align-items:center;gap:7px;padding:5px 10px;border-radius:12px;margin:8px 0 3px;font-size:12px;font-weight:800}
+.task{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:13px;margin-bottom:3px;cursor:pointer;transition:all .18s;border:2px solid transparent}
+.task:hover{transform:scale(1.01)}
+.task.done .name{text-decoration:line-through;color:#bbb}
+.chk{width:24px;height:24px;min-width:24px;border-radius:50%;border:2.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .22s;background:#fff}
+.chk.on{background:currentColor}
+.chk.on::after{content:'✓';color:#fff;font-size:12px;font-weight:800}
+.hora{font-size:10px;font-weight:800;min-width:36px;text-align:right}
+.name{font-size:12px;font-weight:600;flex:1;line-height:1.3}
+.cap-float{position:fixed;pointer-events:none;font-size:28px;animation:fup 1.3s ease-out forwards;z-index:9999}
+@keyframes fup{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-90px) scale(1.5)}}
+.footer{text-align:center;font-size:12px;color:#d48fa8;margin-top:12px;font-weight:700}
+.chibi-wrap{display:flex;justify-content:center;margin-bottom:6px}
+.s-man .sec-header{background:#fde8f0;color:#b5476d}
+.s-man .task{background:#fff5f9}.s-man .task:hover{background:#fde8f0;border-color:#f9c5d9}
+.s-man .chk{color:#e879a0;border-color:#f9a8cc}
+.s-via .sec-header{background:#fff8e1;color:#b58a00}
+.s-via .task{background:#fffde7}.s-via .task:hover{background:#fff3c0;border-color:#f9e0a0}
+.s-via .chk{color:#f9b800;border-color:#f9d86e}
+.s-tra .sec-header{background:#e8f5e9;color:#3a7d44}
+.s-tra .task{background:#f1fbf2}.s-tra .task:hover{background:#dff2e1;border-color:#a5d9af}
+.s-tra .chk{color:#4caf6a;border-color:#a5d9af}
+.s-noc .sec-header{background:#ede7f6;color:#6a3fa0}
+.s-noc .task{background:#f5f0fc}.s-noc .task:hover{background:#e9e0f8;border-color:#c9a8e8}
+.s-noc .chk{color:#9c6fce;border-color:#c9a8e8}
+.s-dor .sec-header{background:#fce4ec;color:#9c2d4e}
+.s-dor .task{background:#fdf0f5}.s-dor .task:hover{background:#fde2ec;border-color:#f4afc8}
+.s-dor .chk{color:#e87aa0;border-color:#f4afc8}
 </style>
 
-<div id="app">
-  <div style="text-align:center;font-size:34px;margin-bottom:2px">🐾</div>
-  <h1>✿ Mi Cronograma ✿</h1>
-  <p class="subtitle">¡Haz clic en cada tarea para marcarla! Las capibaras te aplaudirán 🌸</p>
+<div class="chibi-wrap">
+<svg width="160" height="120" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
 
-  <div class="days-tabs" id="dayTabs"></div>
-  <div class="progress-label" id="progressLabel"></div>
-  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <!-- sombra suave -->
+  <ellipse cx="78" cy="113" rx="52" ry="7" fill="#c8b0d0" opacity=".25"/>
 
-  <div id="taskList"></div>
-  <div class="footer-cap" id="footerMsg">🐾 ¡Tú puedes, campeona! 🐾</div>
+  <!-- COLA curvada atrás -->
+  <path d="M118 85 Q148 60 140 35 Q136 22 128 28 Q122 33 130 45 Q138 58 112 78" fill="#e8e0f0" stroke="#c0b0d0" stroke-width="1.5"/>
+
+  <!-- CUERPO super gordito y redondo — forma de panecillo -->
+  <ellipse cx="75" cy="85" rx="58" ry="38" fill="#f5f0fa"/>
+  <ellipse cx="75" cy="85" rx="58" ry="38" fill="none" stroke="#c8b8e0" stroke-width="1.8"/>
+
+  <!-- barriga clara -->
+  <ellipse cx="72" cy="90" rx="36" ry="24" fill="#fefcff" opacity=".7"/>
+
+  <!-- PATAS delanteras chiquitas y redondas -->
+  <ellipse cx="34" cy="106" rx="16" ry="10" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
+  <ellipse cx="72" cy="109" rx="16" ry="9" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
+
+  <!-- deditos pata izq -->
+  <ellipse cx="24" cy="112" rx="5" ry="3.5" fill="#ede8f5"/>
+  <ellipse cx="32" cy="115" rx="5" ry="3.5" fill="#ede8f5"/>
+  <ellipse cx="41" cy="114" rx="5" ry="3.5" fill="#ede8f5"/>
+  <!-- deditos pata der -->
+  <ellipse cx="62" cy="114" rx="5" ry="3.5" fill="#ede8f5"/>
+  <ellipse cx="70" cy="116" rx="5" ry="3.5" fill="#ede8f5"/>
+  <ellipse cx="79" cy="115" rx="5" ry="3.5" fill="#ede8f5"/>
+
+  <!-- MANCHAS moradas/lavanda como en la imagen -->
+  <!-- mancha cabeza arriba -->
+  <ellipse cx="68" cy="52" rx="18" ry="10" fill="#c8b0e0" opacity=".75"/>
+  <!-- mancha espalda -->
+  <ellipse cx="108" cy="75" rx="16" ry="11" fill="#b8a0d4" opacity=".6"/>
+  <!-- mancha pequeña mejilla der -->
+  <ellipse cx="100" cy="62" rx="8" ry="6" fill="#d0bce8" opacity=".55"/>
+
+  <!-- CABEZA — se mezcla con el cuerpo, estilo blob -->
+  <!-- cuello/unión invisible — misma forma fluida -->
+  <ellipse cx="72" cy="62" rx="38" ry="34" fill="#f5f0fa"/>
+  <ellipse cx="72" cy="62" rx="38" ry="34" fill="none" stroke="#c8b8e0" stroke-width="1.8"/>
+
+  <!-- mancha cabeza encima de la cara -->
+  <ellipse cx="68" cy="42" rx="16" ry="9" fill="#c8b0e0" opacity=".7"/>
+
+  <!-- OREJAS pequeñas y redondas arriba de la cabeza -->
+  <!-- oreja izquierda -->
+  <ellipse cx="46" cy="32" rx="13" ry="12" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
+  <ellipse cx="46" cy="32" rx="8" ry="7" fill="#f0c8d8"/>
+  <!-- manchita en oreja izq -->
+  <ellipse cx="46" cy="30" rx="6" ry="5" fill="#c8b0e0" opacity=".6"/>
+
+  <!-- oreja derecha -->
+  <ellipse cx="98" cy="32" rx="13" ry="12" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
+  <ellipse cx="98" cy="32" rx="8" ry="7" fill="#f0c8d8"/>
+
+  <!-- OJOS — estilo lunar/semicírculo cerrado kawaii como en la imagen -->
+  <!-- ojo izquierdo — curva hacia abajo (ojo cerrado feliz) -->
+  <path d="M54 62 Q60 56 66 62" stroke="#5a3a6a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <!-- ojo derecho -->
+  <path d="M78 62 Q84 56 90 62" stroke="#5a3a6a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+  <!-- NARIZ triangulito rosa -->
+  <path d="M69 70 L72 73 L75 70 Z" fill="#e87090"/>
+
+  <!-- BOCA en W chiquita -->
+  <path d="M67 74 Q70 78 72 75 Q74 78 77 74" stroke="#c05070" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- MEJILLAS circulitos rosados -->
+  <circle cx="52" cy="72" r="9" fill="#f9a8c0" opacity=".45"/>
+  <circle cx="92" cy="72" r="9" fill="#f9a8c0" opacity=".45"/>
+
+  <!-- BIGOTES suaves -->
+  <line x1="20" y1="68" x2="52" y2="71" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+  <line x1="20" y1="74" x2="52" y2="73" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+  <line x1="92" y1="71" x2="124" y2="68" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+  <line x1="92" y1="73" x2="124" y2="74" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+
+</svg>
 </div>
 
-<script>
-const DAYS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+<h1>🌸 Mi Gronograma 🌸</h1>
+<p class="subtitle">¡Haz clic para tachar tus tareas! El gatito te aplaudirá 🐱</p>
 
-const SECTIONS = [
-  {key:'manana', label:'🌸 Mañana', cap:'🐾', items:[
-    {h:'06:30',t:'Despertar ☀️'},
-    {h:'06:35',t:'Fibra + Probiótico + B12 💊'},
-    {h:'06:40',t:'Ducha 🚿'},
-    {h:'07:00',t:'Skincare mañana 🧴✨'},
-    {h:'07:15',t:'Vestirse 👗'},
-    {h:'07:30',t:'Ordenar mochila 🎒'},
+<div class="days-tabs" id="tabs"></div>
+<div class="prog-label" id="plabel"></div>
+<div class="prog-wrap"><div class="prog-bar" id="pbar"></div></div>
+<div id="list"></div>
+<div class="footer" id="footer">🐱 ¡Tú puedes, campeona! 🐱</div>
+
+<script>
+const DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes'];
+const SECS=[
+  {cls:'s-man',icon:'🌸',lbl:'Mañana',items:[
+    {h:'06:30',t:'Despertar ☀️'},{h:'06:35',t:'Fibra + Probiótico + B12 💊'},
+    {h:'06:40',t:'Ducha 🚿'},{h:'07:00',t:'Skincare mañana 🧴✨'},
+    {h:'07:15',t:'Vestirse 👗'},{h:'07:30',t:'Ordenar mochila 🎒'},
   ]},
-  {key:'viaje', label:'🍋 Viaje ida', cap:'🚌', items:[
-    {h:'07:45',t:'Salida de casa 🚪'},
-    {h:'07:45',t:'Viaje al trabajo 🚌'},
-    {h:'08:30',t:'Llegada al trabajo'},
+  {cls:'s-via',icon:'🍋',lbl:'Viaje ida',items:[
+    {h:'07:45',t:'Salida de casa 🚪'},{h:'07:45',t:'Viaje al trabajo 🚌'},{h:'08:30',t:'Llegada al trabajo'},
   ]},
-  {key:'trabajo', label:'🌿 Trabajo', cap:'💼', items:[
-    {h:'09:00',t:'Inicio jornada laboral 💼'},
-    {h:'14:00',t:'Almuerzo + Berberina 💊'},
-    {h:'17:45',t:'Colación 🍎'},
-    {h:'18:30',t:'Magnesio + Citrato de potasio 💊'},
-    {h:'18:30',t:'Fin jornada laboral'},
-    {h:'19:30',t:'Gimnasio 💪'},
-    {h:'20:45',t:'Fin gimnasio'},
+  {cls:'s-tra',icon:'🌿',lbl:'Trabajo',items:[
+    {h:'09:00',t:'Inicio jornada laboral 💼'},{h:'14:00',t:'Almuerzo + Berberina 💊'},
+    {h:'17:45',t:'Colación 🍎'},{h:'18:30',t:'Magnesio + Citrato de potasio 💊'},
+    {h:'18:30',t:'Fin jornada laboral'},{h:'19:30',t:'Gimnasio 💪'},{h:'20:45',t:'Fin gimnasio'},
   ]},
-  {key:'viaje', label:'🍋 Viaje vuelta', cap:'🏠', items:[
+  {cls:'s-via',icon:'🏠',lbl:'Viaje vuelta',items:[
     {h:'20:45',t:'Viaje a casa 🚌'},
   ]},
-  {key:'noche', label:'💜 Noche', cap:'🌙', items:[
-    {h:'21:30',t:'Llegada a casa 🏠'},
-    {h:'21:30',t:'Lavar la loza (llegada) 🍽️'},
-    {h:'21:45',t:'Once + Inositol 💊🍵'},
-    {h:'22:00',t:'Ducha 🚿'},
-    {h:'22:15',t:'Skincare noche 🧴🌙'},
-    {h:'22:30',t:'Masaje / Relajación 💆'},
-    {h:'22:40',t:'Caminata 30 min 🚶'},
-    {h:'23:10',t:'Duolingo 10 min 🦉'},
-    {h:'23:20',t:'Lectura Lezhin 15 min 📖💕'},
-    {h:'23:35',t:'Empacar comida del día siguiente 🥗'},
-    {h:'23:50',t:'Ordenar bolso 👜'},
-    {h:'23:55',t:'Jugar Genshin Impact 🎮'},
-    {h:'00:05',t:'Creatina 💊'},
-    {h:'00:10',t:'Lavar la loza (noche) 🍽️'},
+  {cls:'s-noc',icon:'💜',lbl:'Noche',items:[
+    {h:'21:30',t:'Llegada a casa 🏠'},{h:'21:30',t:'Lavar la loza (llegada) 🍽️'},
+    {h:'21:45',t:'Once + Inositol 💊🍵'},{h:'22:00',t:'Ducha 🚿'},
+    {h:'22:15',t:'Skincare noche 🧴🌙'},{h:'22:30',t:'Masaje / Relajación 💆'},
+    {h:'22:40',t:'Caminata 30 min 🚶'},{h:'23:10',t:'Duolingo 10 min 🦉'},
+    {h:'23:20',t:'Lectura Lezhin 15 min 📖💕'},{h:'23:35',t:'Empacar comida del día siguiente 🥗'},
+    {h:'23:50',t:'Ordenar bolso 👜'},{h:'23:55',t:'Jugar Genshin Impact 🎮'},
+    {h:'00:05',t:'Creatina 💊'},{h:'00:10',t:'Lavar la loza (noche) 🍽️'},
   ]},
-  {key:'dormir', label:'😴 Dormir', cap:'🌙', items:[
-    {h:'00:20',t:'Prepararse para dormir 🌙'},
-    {h:'00:30',t:'DORMIR 😴  (6h → despertar 06:30)'},
+  {cls:'s-dor',icon:'😴',lbl:'Dormir',items:[
+    {h:'00:20',t:'Prepararse para dormir 🌙'},{h:'00:30',t:'DORMIR 😴  (6h → despertar 06:30)'},
   ]},
 ];
-
-const CAPIBARAS = ['🐾','🌸','✨','💕','🌺','🥰','🎀'];
-const MSGS = [
-  '🐾 ¡Tú puedes, campeona! 🐾',
-  '🌸 ¡Vas increíble! 🌸',
-  '✨ ¡La capibara te admira! ✨',
-  '💕 ¡Sigue así, princesa! 💕',
-  '🎀 ¡Casi terminas el día! 🎀',
-  '🥰 ¡Eres la mejor capibara! 🥰',
-  '🌺 ¡100%! ¡Orgullosísimas de ti! 🌺',
-];
-
-const TOTAL = SECTIONS.reduce((s,sec)=>s+sec.items.length,0);
-let currentDay = 0;
-let state = {};
-
+const TOTAL=SECS.reduce((s,sec)=>s+sec.items.length,0);
+const FLOATS=['🐱','🌸','✨','💕','🌺','🥰','🎀','🌼','💖','💜'];
+const MSGS=['🐱 ¡Tú puedes, campeona! 🐱','🌸 ¡Vas increíble! 🌸','✨ ¡El gatito te admira! ✨','💕 ¡Sigue así, princesa! 💕','🎀 ¡Casi terminas el día! 🎀','🥰 ¡Eres la mejor! 🥰','🌺 ¡100%! ¡El gatito está feliz! 🌺'];
+const SK='mgronograma_v5';
+let state={};
+try{const r=localStorage.getItem(SK);if(r)state=JSON.parse(r);}catch(e){}
 DAYS.forEach((_,d)=>{
-  state[d] = {};
-  SECTIONS.forEach((sec,si)=>{
-    sec.items.forEach((_,ii)=>{
-      state[d][`${si}-${ii}`] = false;
-    });
-  });
+  if(!state[d])state[d]={};
+  SECS.forEach((sec,si)=>sec.items.forEach((_,ii)=>{const k=`${si}-${ii}`;if(state[d][k]===undefined)state[d][k]=false;}));
 });
-
-function getDone(d){return Object.values(state[d]).filter(Boolean).length}
-
-function renderTabs(){
-  const wrap = document.getElementById('dayTabs');
-  wrap.innerHTML = DAYS.map((day,i)=>`
-    <button class="day-btn${i===currentDay?' active':''}" onclick="switchDay(${i})">${day}</button>
-  `).join('');
-}
-
-function renderProgress(){
-  const done = getDone(currentDay);
-  const pct = Math.round(done/TOTAL*100);
-  document.getElementById('progressBar').style.width = pct+'%';
-  document.getElementById('progressLabel').textContent = `✿ ${done} de ${TOTAL} tareas completadas (${pct}%) ✿`;
-  const msgIdx = Math.min(Math.floor(pct/17),MSGS.length-1);
-  document.getElementById('footerMsg').textContent = MSGS[msgIdx];
-}
-
-function renderTasks(){
-  const d = currentDay;
-  const list = document.getElementById('taskList');
-  let html = '';
-  SECTIONS.forEach((sec,si)=>{
-    html += `<div class="sec-${sec.key}">
-      <div class="section-header"><span class="capibara-icon">${sec.cap}</span>${sec.label}</div>`;
-    sec.items.forEach((item,ii)=>{
-      const key = `${si}-${ii}`;
-      const done = state[d][key];
-      html += `<div class="task-item${done?' done':''}" onclick="toggleTask(${d},'${key}',event)">
-        <div class="check-circle${done?' checked':''}"></div>
-        <span class="hora">${item.h}</span>
-        <span class="task-name">${item.t}</span>
-      </div>`;
+function save(){try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}}
+let cur=0;
+const AC=new(window.AudioContext||window.webkitAudioContext)();
+function playPop(){
+  try{
+    [880,1100,1320].forEach((f,i)=>{
+      const o=AC.createOscillator(),g=AC.createGain();
+      o.connect(g);g.connect(AC.destination);o.type='sine';
+      o.frequency.setValueAtTime(f,AC.currentTime+i*0.07);
+      g.gain.setValueAtTime(0.15,AC.currentTime+i*0.07);
+      g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+i*0.07+0.18);
+      o.start(AC.currentTime+i*0.07);o.stop(AC.currentTime+i*0.07+0.2);
     });
-    html += '</div>';
-  });
-  list.innerHTML = html;
+  }catch(e){}
 }
-
-function toggleTask(d, key, e){
-  state[d][key] = !state[d][key];
-  if(state[d][key]) spawnCapibara(e);
-  renderTasks();
-  renderProgress();
+function playUncheck(){
+  try{
+    const o=AC.createOscillator(),g=AC.createGain();
+    o.connect(g);g.connect(AC.destination);
+    o.frequency.setValueAtTime(500,AC.currentTime);
+    o.frequency.exponentialRampToValueAtTime(320,AC.currentTime+0.15);
+    g.gain.setValueAtTime(0.15,AC.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.2);
+    o.start();o.stop(AC.currentTime+0.2);
+  }catch(e){}
 }
-
-function spawnCapibara(e){
-  const el = document.createElement('div');
-  el.className = 'capibara-reward';
-  el.textContent = CAPIBARAS[Math.floor(Math.random()*CAPIBARAS.length)];
-  const x = e ? e.clientX : window.innerWidth/2;
-  const y = e ? e.clientY : window.innerHeight/2;
-  el.style.left = (x-16)+'px';
-  el.style.top  = (y-16)+'px';
+function doneCount(d){return Object.values(state[d]).filter(Boolean).length}
+function spawnFloat(e){
+  const el=document.createElement('div');
+  el.className='cap-float';
+  el.textContent=FLOATS[Math.floor(Math.random()*FLOATS.length)];
+  el.style.left=(e?e.clientX-15:window.innerWidth/2)+'px';
+  el.style.top=(e?e.clientY-15:window.innerHeight/2)+'px';
   document.body.appendChild(el);
-  setTimeout(()=>el.remove(), 1200);
+  setTimeout(()=>el.remove(),1300);
 }
-
-function switchDay(i){
-  currentDay = i;
-  renderTabs();
-  renderTasks();
-  renderProgress();
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=DAYS.map((d,i)=>
+    `<button class="day-btn${i===cur?' active':''}" onclick="switchDay(${i})">${d}</button>`
+  ).join('');
 }
-
+function renderProgress(){
+  const n=doneCount(cur),pct=Math.round(n/TOTAL*100);
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('plabel').textContent=`✿ ${n} de ${TOTAL} tareas completadas (${pct}%) ✿`;
+  document.getElementById('footer').textContent=MSGS[Math.min(Math.floor(pct/17),MSGS.length-1)];
+}
+function renderTasks(){
+  document.getElementById('list').innerHTML=SECS.map((sec,si)=>`
+    <div class="${sec.cls}">
+      <div class="sec-header"><span style="font-size:15px">${sec.icon}</span>${sec.lbl}</div>
+      ${sec.items.map((item,ii)=>{
+        const k=`${si}-${ii}`,dn=state[cur][k];
+        return `<div class="task${dn?' done':''}" onclick="toggle(${cur},'${k}',event)">
+          <div class="chk${dn?' on':''}"></div>
+          <span class="hora">${item.h}</span>
+          <span class="name">${item.t}</span>
+        </div>`;
+      }).join('')}
+    </div>`
+  ).join('');
+}
+function toggle(d,k,e){
+  AC.resume();
+  const v=!state[d][k];state[d][k]=v;save();
+  if(v){playPop();spawnFloat(e);}else{playUncheck();}
+  renderTasks();renderProgress();
+}
+function switchDay(i){cur=i;renderTabs();renderTasks();renderProgress();}
 switchDay(0);
 </script>
