@@ -4,13 +4,17 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',sans-serif;background:#fff5f9;padding:14px}
 h1{text-align:center;font-size:21px;font-weight:800;color:#c2587a;margin-bottom:2px}
-.subtitle{text-align:center;font-size:11px;color:#d48fa8;margin-bottom:12px}
+.subtitle{text-align:center;font-size:11px;color:#d48fa8;margin-bottom:10px}
 .days-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
 .day-btn{padding:6px 13px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#c2587a;cursor:pointer;transition:all .2s}
 .day-btn.active{background:#f9c5d9;color:#8b3054}
 .day-btn:hover{background:#fde8f0}
-.prog-label{text-align:center;font-size:11px;color:#c2587a;font-weight:700;margin-bottom:5px}
-.prog-wrap{background:#fde8f0;border-radius:20px;height:13px;margin:0 8px 12px;overflow:hidden}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;gap:8px}
+.prog-label{font-size:11px;color:#c2587a;font-weight:700;flex:1;text-align:center}
+.reset-btn{padding:5px 12px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:#c2587a;cursor:pointer;transition:all .2s;white-space:nowrap}
+.reset-btn:hover{background:#fde8f0;border-color:#e879a0}
+.reset-btn:active{transform:scale(0.96)}
+.prog-wrap{background:#fde8f0;border-radius:20px;height:13px;margin:0 0 12px;overflow:hidden}
 .prog-bar{height:100%;background:linear-gradient(90deg,#f9a8cc,#e879a0);border-radius:20px;transition:width .4s ease}
 .sec-header{display:flex;align-items:center;gap:7px;padding:5px 10px;border-radius:12px;margin:8px 0 3px;font-size:12px;font-weight:800}
 .task{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:13px;margin-bottom:3px;cursor:pointer;transition:all .18s;border:2px solid transparent}
@@ -21,10 +25,10 @@ h1{text-align:center;font-size:21px;font-weight:800;color:#c2587a;margin-bottom:
 .chk.on::after{content:'✓';color:#fff;font-size:12px;font-weight:800}
 .hora{font-size:10px;font-weight:800;min-width:36px;text-align:right}
 .name{font-size:12px;font-weight:600;flex:1;line-height:1.3}
-.cap-float{position:fixed;pointer-events:none;font-size:28px;animation:fup 1.3s ease-out forwards;z-index:9999}
+.float-el{position:fixed;pointer-events:none;font-size:26px;animation:fup 1.3s ease-out forwards;z-index:9999}
 @keyframes fup{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-90px) scale(1.5)}}
 .footer{text-align:center;font-size:12px;color:#d48fa8;margin-top:12px;font-weight:700}
-.chibi-wrap{display:flex;justify-content:center;margin-bottom:6px}
+.paws-row{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px}
 .s-man .sec-header{background:#fde8f0;color:#b5476d}
 .s-man .task{background:#fff5f9}.s-man .task:hover{background:#fde8f0;border-color:#f9c5d9}
 .s-man .chk{color:#e879a0;border-color:#f9a8cc}
@@ -40,97 +44,52 @@ h1{text-align:center;font-size:21px;font-weight:800;color:#c2587a;margin-bottom:
 .s-dor .sec-header{background:#fce4ec;color:#9c2d4e}
 .s-dor .task{background:#fdf0f5}.s-dor .task:hover{background:#fde2ec;border-color:#f4afc8}
 .s-dor .chk{color:#e87aa0;border-color:#f4afc8}
+.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(255,220,235,0.7);z-index:999;align-items:center;justify-content:center}
+.confirm-overlay.show{display:flex}
+.confirm-box{background:#fff;border-radius:20px;border:2px solid #f9c5d9;padding:24px 28px;text-align:center;max-width:260px;box-shadow:0 4px 24px rgba(200,100,140,.15)}
+.confirm-box p{font-size:13px;font-weight:700;color:#c2587a;margin-bottom:16px;line-height:1.5}
+.confirm-btns{display:flex;gap:10px;justify-content:center}
+.confirm-btns button{padding:7px 18px;border-radius:20px;border:2px solid #f9c5d9;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s}
+.btn-yes{background:#e879a0;color:#fff;border-color:#e879a0}
+.btn-yes:hover{background:#c2587a}
+.btn-no{background:#fff;color:#c2587a}
+.btn-no:hover{background:#fde8f0}
 </style>
 
-<div class="chibi-wrap">
-<svg width="160" height="120" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
-
-  <!-- sombra suave -->
-  <ellipse cx="78" cy="113" rx="52" ry="7" fill="#c8b0d0" opacity=".25"/>
-
-  <!-- COLA curvada atrás -->
-  <path d="M118 85 Q148 60 140 35 Q136 22 128 28 Q122 33 130 45 Q138 58 112 78" fill="#e8e0f0" stroke="#c0b0d0" stroke-width="1.5"/>
-
-  <!-- CUERPO super gordito y redondo — forma de panecillo -->
-  <ellipse cx="75" cy="85" rx="58" ry="38" fill="#f5f0fa"/>
-  <ellipse cx="75" cy="85" rx="58" ry="38" fill="none" stroke="#c8b8e0" stroke-width="1.8"/>
-
-  <!-- barriga clara -->
-  <ellipse cx="72" cy="90" rx="36" ry="24" fill="#fefcff" opacity=".7"/>
-
-  <!-- PATAS delanteras chiquitas y redondas -->
-  <ellipse cx="34" cy="106" rx="16" ry="10" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
-  <ellipse cx="72" cy="109" rx="16" ry="9" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
-
-  <!-- deditos pata izq -->
-  <ellipse cx="24" cy="112" rx="5" ry="3.5" fill="#ede8f5"/>
-  <ellipse cx="32" cy="115" rx="5" ry="3.5" fill="#ede8f5"/>
-  <ellipse cx="41" cy="114" rx="5" ry="3.5" fill="#ede8f5"/>
-  <!-- deditos pata der -->
-  <ellipse cx="62" cy="114" rx="5" ry="3.5" fill="#ede8f5"/>
-  <ellipse cx="70" cy="116" rx="5" ry="3.5" fill="#ede8f5"/>
-  <ellipse cx="79" cy="115" rx="5" ry="3.5" fill="#ede8f5"/>
-
-  <!-- MANCHAS moradas/lavanda como en la imagen -->
-  <!-- mancha cabeza arriba -->
-  <ellipse cx="68" cy="52" rx="18" ry="10" fill="#c8b0e0" opacity=".75"/>
-  <!-- mancha espalda -->
-  <ellipse cx="108" cy="75" rx="16" ry="11" fill="#b8a0d4" opacity=".6"/>
-  <!-- mancha pequeña mejilla der -->
-  <ellipse cx="100" cy="62" rx="8" ry="6" fill="#d0bce8" opacity=".55"/>
-
-  <!-- CABEZA — se mezcla con el cuerpo, estilo blob -->
-  <!-- cuello/unión invisible — misma forma fluida -->
-  <ellipse cx="72" cy="62" rx="38" ry="34" fill="#f5f0fa"/>
-  <ellipse cx="72" cy="62" rx="38" ry="34" fill="none" stroke="#c8b8e0" stroke-width="1.8"/>
-
-  <!-- mancha cabeza encima de la cara -->
-  <ellipse cx="68" cy="42" rx="16" ry="9" fill="#c8b0e0" opacity=".7"/>
-
-  <!-- OREJAS pequeñas y redondas arriba de la cabeza -->
-  <!-- oreja izquierda -->
-  <ellipse cx="46" cy="32" rx="13" ry="12" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
-  <ellipse cx="46" cy="32" rx="8" ry="7" fill="#f0c8d8"/>
-  <!-- manchita en oreja izq -->
-  <ellipse cx="46" cy="30" rx="6" ry="5" fill="#c8b0e0" opacity=".6"/>
-
-  <!-- oreja derecha -->
-  <ellipse cx="98" cy="32" rx="13" ry="12" fill="#f5f0fa" stroke="#c8b8e0" stroke-width="1.5"/>
-  <ellipse cx="98" cy="32" rx="8" ry="7" fill="#f0c8d8"/>
-
-  <!-- OJOS — estilo lunar/semicírculo cerrado kawaii como en la imagen -->
-  <!-- ojo izquierdo — curva hacia abajo (ojo cerrado feliz) -->
-  <path d="M54 62 Q60 56 66 62" stroke="#5a3a6a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-  <!-- ojo derecho -->
-  <path d="M78 62 Q84 56 90 62" stroke="#5a3a6a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-
-  <!-- NARIZ triangulito rosa -->
-  <path d="M69 70 L72 73 L75 70 Z" fill="#e87090"/>
-
-  <!-- BOCA en W chiquita -->
-  <path d="M67 74 Q70 78 72 75 Q74 78 77 74" stroke="#c05070" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- MEJILLAS circulitos rosados -->
-  <circle cx="52" cy="72" r="9" fill="#f9a8c0" opacity=".45"/>
-  <circle cx="92" cy="72" r="9" fill="#f9a8c0" opacity=".45"/>
-
-  <!-- BIGOTES suaves -->
-  <line x1="20" y1="68" x2="52" y2="71" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
-  <line x1="20" y1="74" x2="52" y2="73" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
-  <line x1="92" y1="71" x2="124" y2="68" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
-  <line x1="92" y1="73" x2="124" y2="74" stroke="#c0a8c8" stroke-width="1" stroke-linecap="round" opacity=".7"/>
-
-</svg>
+<!-- huellitas decorativas arriba -->
+<div class="paws-row">
+  <svg width="28" height="28" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9a8cc"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9a8cc"/></svg>
+  <svg width="22" height="22" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#c9a8e8"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#c9a8e8"/></svg>
+  <svg width="30" height="30" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9a8cc"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9a8cc"/></svg>
+  <svg width="22" height="22" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9c88a"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9c88a"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9c88a"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9c88a"/></svg>
+  <svg width="28" height="28" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#a5d9af"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#a5d9af"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#a5d9af"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#a5d9af"/></svg>
+  <svg width="20" height="20" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9a8cc"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9a8cc"/></svg>
+  <svg width="26" height="26" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#c9a8e8"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#c9a8e8"/></svg>
 </div>
 
-<h1>🌸 Mi Gronograma 🌸</h1>
-<p class="subtitle">¡Haz clic para tachar tus tareas! El gatito te aplaudirá 🐱</p>
+<h1>🐾 Mi Cronograma 🐾</h1>
+<p class="subtitle">¡Haz clic para tachar tus tareas! Las huellas te aplaudirán 🌸</p>
 
 <div class="days-tabs" id="tabs"></div>
-<div class="prog-label" id="plabel"></div>
+
+<div class="top-bar">
+  <div class="prog-label" id="plabel"></div>
+  <button class="reset-btn" onclick="askReset()">🔄 Reiniciar día</button>
+</div>
 <div class="prog-wrap"><div class="prog-bar" id="pbar"></div></div>
 <div id="list"></div>
-<div class="footer" id="footer">🐱 ¡Tú puedes, campeona! 🐱</div>
+<div class="footer" id="footer">🐾 ¡Tú puedes, campeona! 🐾</div>
+
+<!-- Confirm modal -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <p>🐾 ¿Segura que quieres reiniciar todas las tareas de hoy?</p>
+    <div class="confirm-btns">
+      <button class="btn-yes" onclick="doReset()">¡Sí, reiniciar!</button>
+      <button class="btn-no" onclick="closeConfirm()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes'];
@@ -165,9 +124,9 @@ const SECS=[
   ]},
 ];
 const TOTAL=SECS.reduce((s,sec)=>s+sec.items.length,0);
-const FLOATS=['🐱','🌸','✨','💕','🌺','🥰','🎀','🌼','💖','💜'];
-const MSGS=['🐱 ¡Tú puedes, campeona! 🐱','🌸 ¡Vas increíble! 🌸','✨ ¡El gatito te admira! ✨','💕 ¡Sigue así, princesa! 💕','🎀 ¡Casi terminas el día! 🎀','🥰 ¡Eres la mejor! 🥰','🌺 ¡100%! ¡El gatito está feliz! 🌺'];
-const SK='mgronograma_v5';
+const FLOATS=['🐾','🌸','✨','💕','🌺','🥰','🎀','🌼','💖','💜'];
+const MSGS=['🐾 ¡Tú puedes, campeona! 🐾','🌸 ¡Vas increíble! 🌸','✨ ¡Las huellas te admiran! ✨','💕 ¡Sigue así, princesa! 💕','🎀 ¡Casi terminas el día! 🎀','🥰 ¡Eres la mejor! 🥰','🌺 ¡100%! ¡Orgullosísimas! 🌺'];
+const SK='mcronograma_v6';
 let state={};
 try{const r=localStorage.getItem(SK);if(r)state=JSON.parse(r);}catch(e){}
 DAYS.forEach((_,d)=>{
@@ -178,37 +137,31 @@ function save(){try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}}
 let cur=0;
 const AC=new(window.AudioContext||window.webkitAudioContext)();
 function playPop(){
-  try{
-    [880,1100,1320].forEach((f,i)=>{
-      const o=AC.createOscillator(),g=AC.createGain();
-      o.connect(g);g.connect(AC.destination);o.type='sine';
-      o.frequency.setValueAtTime(f,AC.currentTime+i*0.07);
-      g.gain.setValueAtTime(0.15,AC.currentTime+i*0.07);
-      g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+i*0.07+0.18);
-      o.start(AC.currentTime+i*0.07);o.stop(AC.currentTime+i*0.07+0.2);
-    });
-  }catch(e){}
+  try{[880,1100,1320].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.type='sine';o.frequency.setValueAtTime(f,AC.currentTime+i*0.07);g.gain.setValueAtTime(0.15,AC.currentTime+i*0.07);g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+i*0.07+0.18);o.start(AC.currentTime+i*0.07);o.stop(AC.currentTime+i*0.07+0.2);});}catch(e){}
 }
 function playUncheck(){
-  try{
-    const o=AC.createOscillator(),g=AC.createGain();
-    o.connect(g);g.connect(AC.destination);
-    o.frequency.setValueAtTime(500,AC.currentTime);
-    o.frequency.exponentialRampToValueAtTime(320,AC.currentTime+0.15);
-    g.gain.setValueAtTime(0.15,AC.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.2);
-    o.start();o.stop(AC.currentTime+0.2);
-  }catch(e){}
+  try{const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.setValueAtTime(500,AC.currentTime);o.frequency.exponentialRampToValueAtTime(320,AC.currentTime+0.15);g.gain.setValueAtTime(0.15,AC.currentTime);g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.2);o.start();o.stop(AC.currentTime+0.2);}catch(e){}
+}
+function playReset(){
+  try{[500,400,300].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.type='sine';o.frequency.setValueAtTime(f,AC.currentTime+i*0.1);g.gain.setValueAtTime(0.12,AC.currentTime+i*0.1);g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+i*0.1+0.15);o.start(AC.currentTime+i*0.1);o.stop(AC.currentTime+i*0.1+0.18);});}catch(e){}
 }
 function doneCount(d){return Object.values(state[d]).filter(Boolean).length}
 function spawnFloat(e){
-  const el=document.createElement('div');
-  el.className='cap-float';
+  const el=document.createElement('div');el.className='float-el';
   el.textContent=FLOATS[Math.floor(Math.random()*FLOATS.length)];
-  el.style.left=(e?e.clientX-15:window.innerWidth/2)+'px';
-  el.style.top=(e?e.clientY-15:window.innerHeight/2)+'px';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),1300);
+  el.style.left=(e?e.clientX-13:window.innerWidth/2)+'px';
+  el.style.top=(e?e.clientY-13:window.innerHeight/2)+'px';
+  document.body.appendChild(el);setTimeout(()=>el.remove(),1300);
+}
+function askReset(){
+  AC.resume();
+  document.getElementById('confirmOverlay').classList.add('show');
+}
+function closeConfirm(){document.getElementById('confirmOverlay').classList.remove('show');}
+function doReset(){
+  closeConfirm();playReset();
+  SECS.forEach((sec,si)=>sec.items.forEach((_,ii)=>{state[cur][`${si}-${ii}`]=false;}));
+  save();renderTasks();renderProgress();
 }
 function renderTabs(){
   document.getElementById('tabs').innerHTML=DAYS.map((d,i)=>
@@ -218,7 +171,7 @@ function renderTabs(){
 function renderProgress(){
   const n=doneCount(cur),pct=Math.round(n/TOTAL*100);
   document.getElementById('pbar').style.width=pct+'%';
-  document.getElementById('plabel').textContent=`✿ ${n} de ${TOTAL} tareas completadas (${pct}%) ✿`;
+  document.getElementById('plabel').textContent=`🐾 ${n} de ${TOTAL} tareas (${pct}%)`;
   document.getElementById('footer').textContent=MSGS[Math.min(Math.floor(pct/17),MSGS.length-1)];
 }
 function renderTasks(){
@@ -237,8 +190,7 @@ function renderTasks(){
   ).join('');
 }
 function toggle(d,k,e){
-  AC.resume();
-  const v=!state[d][k];state[d][k]=v;save();
+  AC.resume();const v=!state[d][k];state[d][k]=v;save();
   if(v){playPop();spawnFloat(e);}else{playUncheck();}
   renderTasks();renderProgress();
 }
