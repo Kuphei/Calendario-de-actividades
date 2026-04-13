@@ -1,160 +1,629 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Plan Semanal ✦ Daniela ✦ BTS</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Nunito',sans-serif;background:#fff5f9;padding:14px}
-h1{text-align:center;font-size:21px;font-weight:800;color:#c2587a;margin-bottom:2px}
-.subtitle{text-align:center;font-size:11px;color:#d48fa8;margin-bottom:10px}
-.days-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
-.day-btn{padding:6px 13px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:#c2587a;cursor:pointer;transition:all .2s}
-.day-btn.active{background:#f9c5d9;color:#8b3054}
-.day-btn:hover{background:#fde8f0}
-.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;gap:8px}
-.prog-label{font-size:11px;color:#c2587a;font-weight:700;flex:1;text-align:center}
-.reset-btn{padding:5px 12px;border-radius:20px;border:2px solid #f9c5d9;background:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:#c2587a;cursor:pointer;transition:all .2s;white-space:nowrap}
-.reset-btn:hover{background:#fde8f0;border-color:#e879a0}
-.reset-btn:active{transform:scale(0.96)}
-.prog-wrap{background:#fde8f0;border-radius:20px;height:13px;margin:0 0 12px;overflow:hidden}
-.prog-bar{height:100%;background:linear-gradient(90deg,#f9a8cc,#e879a0);border-radius:20px;transition:width .4s ease}
-.sec-header{display:flex;align-items:center;gap:7px;padding:5px 10px;border-radius:12px;margin:8px 0 3px;font-size:12px;font-weight:800}
-.task{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:13px;margin-bottom:3px;cursor:pointer;transition:all .18s;border:2px solid transparent}
-.task:hover{transform:scale(1.01)}
-.task.done .name{text-decoration:line-through;color:#bbb}
-.chk{width:24px;height:24px;min-width:24px;border-radius:50%;border:2.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .22s;background:#fff}
-.chk.on{background:currentColor}
-.chk.on::after{content:'✓';color:#fff;font-size:12px;font-weight:800}
-.hora{font-size:10px;font-weight:800;min-width:36px;text-align:right}
-.name{font-size:12px;font-weight:600;flex:1;line-height:1.3}
-.float-el{position:fixed;pointer-events:none;font-size:26px;animation:fup 1.3s ease-out forwards;z-index:9999}
-@keyframes fup{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-90px) scale(1.5)}}
-.footer{text-align:center;font-size:12px;color:#d48fa8;margin-top:12px;font-weight:700}
-.paws-row{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px}
-.s-man .sec-header{background:#fde8f0;color:#b5476d}
-.s-man .task{background:#fff5f9}.s-man .task:hover{background:#fde8f0;border-color:#f9c5d9}
-.s-man .chk{color:#e879a0;border-color:#f9a8cc}
-.s-via .sec-header{background:#fff8e1;color:#b58a00}
-.s-via .task{background:#fffde7}.s-via .task:hover{background:#fff3c0;border-color:#f9e0a0}
-.s-via .chk{color:#f9b800;border-color:#f9d86e}
-.s-tra .sec-header{background:#e8f5e9;color:#3a7d44}
-.s-tra .task{background:#f1fbf2}.s-tra .task:hover{background:#dff2e1;border-color:#a5d9af}
-.s-tra .chk{color:#4caf6a;border-color:#a5d9af}
-.s-noc .sec-header{background:#ede7f6;color:#6a3fa0}
-.s-noc .task{background:#f5f0fc}.s-noc .task:hover{background:#e9e0f8;border-color:#c9a8e8}
-.s-noc .chk{color:#9c6fce;border-color:#c9a8e8}
-.s-dor .sec-header{background:#fce4ec;color:#9c2d4e}
-.s-dor .task{background:#fdf0f5}.s-dor .task:hover{background:#fde2ec;border-color:#f4afc8}
-.s-dor .chk{color:#e87aa0;border-color:#f4afc8}
-.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(255,220,235,0.7);z-index:999;align-items:center;justify-content:center}
-.confirm-overlay.show{display:flex}
-.confirm-box{background:#fff;border-radius:20px;border:2px solid #f9c5d9;padding:24px 28px;text-align:center;max-width:260px}
-.confirm-box p{font-size:13px;font-weight:700;color:#c2587a;margin-bottom:16px;line-height:1.5}
-.confirm-btns{display:flex;gap:10px;justify-content:center}
-.confirm-btns button{padding:7px 18px;border-radius:20px;border:2px solid #f9c5d9;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s}
-.btn-yes{background:#e879a0;color:#fff;border-color:#e879a0}.btn-yes:hover{background:#c2587a}
-.btn-no{background:#fff;color:#c2587a}.btn-no:hover{background:#fde8f0}
+:root {
+  --pink: #ffb7d5;
+  --pink-soft: #ffe4f0;
+  --pink-deep: #e8709a;
+  --purple: #c9b8f5;
+  --purple-soft: #ede8ff;
+  --purple-deep: #8b72d8;
+  --mint: #b8f0e0;
+  --mint-soft: #e4fff7;
+  --mint-deep: #5cc8a0;
+  --yellow: #fff3b0;
+  --yellow-deep: #f0c842;
+  --blue: #b8d8ff;
+  --blue-soft: #e4f0ff;
+  --blue-deep: #6098e0;
+  --bg: #fff6fb;
+  --card: #ffffff;
+  --text: #5a3a5a;
+  --text-muted: #b08ab0;
+  --border: rgba(200,150,200,0.2);
+  --shadow: 0 4px 20px rgba(180,120,180,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,183,213,0.3) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(201,184,245,0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(184,240,224,0.15) 0%, transparent 60%);
+}
+
+/* floating stars deco */
+.deco {
+  position: fixed; pointer-events: none; z-index: 0;
+  font-size: 18px; opacity: 0.18;
+  animation: float 6s ease-in-out infinite;
+}
+.deco:nth-child(2) { animation-delay: 1s; top: 10%; left: 5%; }
+.deco:nth-child(3) { animation-delay: 2s; top: 20%; right: 8%; font-size: 24px; }
+.deco:nth-child(4) { animation-delay: 0.5s; top: 60%; left: 3%; font-size: 14px; }
+.deco:nth-child(5) { animation-delay: 3s; top: 70%; right: 5%; font-size: 22px; }
+.deco:nth-child(6) { animation-delay: 1.5s; top: 40%; left: 2%; font-size: 16px; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(10deg); }
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  position: relative; z-index: 1;
+}
+
+/* ── HEADER ── */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.header .crown {
+  font-size: 36px;
+  display: block;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.header h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #e8709a, #8b72d8, #5cc8a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 4px 0 2px;
+}
+.header .sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.header .bts-tag {
+  display: inline-block;
+  margin-top: 10px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+.armybullet {
+  display: inline-block;
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, #ffb7d5, #c9b8f5);
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: 0 3px;
+  box-shadow: 0 2px 8px rgba(200,150,200,0.4);
+  position: relative;
+  top: -1px;
+}
+
+/* ── PROGRESS ── */
+.progress-wrap {
+  background: white;
+  border-radius: 20px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+}
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.progress-title { font-size: 13px; font-weight: 700; color: var(--purple-deep); }
+.progress-pct { font-size: 13px; font-weight: 700; color: var(--pink-deep); }
+.progress-bar {
+  height: 10px;
+  background: var(--pink-soft);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  transition: width 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── DAY TABS ── */
+.day-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.tab {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  font-family: 'Nunito', sans-serif;
+}
+.tab:hover { border-color: var(--pink); color: var(--pink-deep); background: var(--pink-soft); }
+.tab.active {
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(200,130,180,0.35);
+  transform: scale(1.05);
+}
+
+/* ── SCHEDULE CARD ── */
+.schedule-card {
+  background: white;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* ── SECTION ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.section-manana { background: linear-gradient(135deg, #fff0f7, #ffeef9); color: #c0609a; }
+.section-viaje_ida { background: linear-gradient(135deg, #fff8e8, #fff3da); color: #c09020; }
+.section-trabajo { background: linear-gradient(135deg, #edfff7, #e4fff4); color: #3a9970; }
+.section-viaje_vuelta { background: linear-gradient(135deg, #fff8e8, #fff3da); color: #c09020; }
+.section-noche { background: linear-gradient(135deg, #f3eeff, #ede8ff); color: #7050c0; }
+.section-dormir { background: linear-gradient(135deg, #e8f0ff, #deeaff); color: #4060c0; }
+.section-plan { background: linear-gradient(135deg, #edfff7, #ffeef9); color: #909; }
+
+/* ── TASK ── */
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(200,150,200,0.08);
+  transition: background 0.15s;
+}
+.task:last-child { border-bottom: none; }
+.task:hover { background: #fff6fb; }
+.task.done { opacity: 0.45; }
+.task.done .task-name { text-decoration: line-through; }
+
+.checkbox {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--pink);
+  background: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(.34,1.56,.64,1);
+  font-size: 13px;
+}
+.task.done .checkbox {
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(200,130,180,0.4);
+  transform: scale(1.1);
+}
+.check-mark { display: none; color: white; font-weight: 900; font-size: 12px; }
+.task.done .check-mark { display: block; }
+
+.task-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 40px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+}
+.task-name {
+  font-size: 14px;
+  color: var(--text);
+  flex: 1;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ── MEMBER BADGES ── */
+.member-bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 1rem;
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: default;
+  transition: transform 0.2s;
+}
+.member:hover { transform: scale(1.1); }
+.member-circle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: -0.02em;
+}
+.member-name { font-size: 10px; color: var(--text-muted); font-weight: 700; }
+.rm { background: linear-gradient(135deg, #9b8fe0, #6a56c0); }
+.jin { background: linear-gradient(135deg, #f0a0c0, #d06090); }
+.suga { background: linear-gradient(135deg, #a0b8e0, #6080c0); }
+.jhope { background: linear-gradient(135deg, #f0d070, #d0a030); }
+.jimin { background: linear-gradient(135deg, #f0a0d0, #d070b0); }
+.v { background: linear-gradient(135deg, #80d0c0, #40a090); }
+.jk { background: linear-gradient(135deg, #f0a090, #d06050); }
+
+/* ── BOTTOM ── */
+.bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.reset-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1.5px solid var(--pink);
+  background: white;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pink-deep);
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  transition: all 0.2s;
+}
+.reset-btn:hover {
+  background: var(--pink-soft);
+  transform: scale(1.03);
+}
+.quote {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+  font-style: italic;
+  flex: 1;
+}
+
+/* ── RULES ── */
+.rules {
+  background: white;
+  border-radius: 20px;
+  padding: 16px 20px;
+  margin-top: 1.25rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.rules h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--purple-deep);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rule-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+  padding: 4px 0;
+  font-weight: 600;
+}
+.rule-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── CONFETTI on check ── */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.task.just-checked .checkbox { animation: pop 0.3s ease; }
 </style>
+</head>
+<body>
 
-<div class="paws-row">
-  <svg width="28" height="28" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9a8cc"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9a8cc"/></svg>
-  <svg width="22" height="22" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#c9a8e8"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#c9a8e8"/></svg>
-  <svg width="30" height="30" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9a8cc"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9a8cc"/></svg>
-  <svg width="22" height="22" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9c88a"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9c88a"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9c88a"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9c88a"/></svg>
-  <svg width="28" height="28" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#a5d9af"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#a5d9af"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#a5d9af"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#a5d9af"/></svg>
-  <svg width="20" height="20" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#f9a8cc"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#f9a8cc"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#f9a8cc"/></svg>
-  <svg width="26" height="26" viewBox="0 0 40 40"><ellipse cx="20" cy="26" rx="12" ry="9" fill="#c9a8e8"/><ellipse cx="9" cy="14" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="20" cy="10" rx="6" ry="7" fill="#c9a8e8"/><ellipse cx="31" cy="14" rx="6" ry="7" fill="#c9a8e8"/></svg>
-</div>
+<!-- deco stars -->
+<div class="deco">✦</div>
+<div class="deco">⭐</div>
+<div class="deco">✿</div>
+<div class="deco">♡</div>
+<div class="deco">✦</div>
+<div class="deco">꩜</div>
 
-<h1>🐾 Mi Cronograma 🐾</h1>
-<p class="subtitle">¡Haz clic para tachar tus tareas! Las huellas te aplaudirán 🌸</p>
+<div class="container">
 
-<div class="days-tabs" id="tabs"></div>
-<div class="top-bar">
-  <div class="prog-label" id="plabel"></div>
-  <button class="reset-btn" onclick="askReset()">🔄 Reiniciar día</button>
-</div>
-<div class="prog-wrap"><div class="prog-bar" id="pbar"></div></div>
-<div id="list"></div>
-<div class="footer" id="footer">🐾 ¡Tú puedes, campeona! 🐾</div>
-
-<div class="confirm-overlay" id="confirmOverlay">
-  <div class="confirm-box">
-    <p>🐾 ¿Segura que quieres reiniciar todas las tareas de hoy?</p>
-    <div class="confirm-btns">
-      <button class="btn-yes" onclick="doReset()">¡Sí, reiniciar!</button>
-      <button class="btn-no" onclick="closeConfirm()">Cancelar</button>
-    </div>
+  <!-- HEADER -->
+  <div class="header">
+    <span class="crown">👑</span>
+    <h1>Plan Semanal de Daniela</h1>
+    <p class="sub">Hacia el concierto del 17 de octubre ✦ ARMY FOREVER</p>
+    <span class="bts-tag">✦ BTS ARMY MODE ✦</span>
   </div>
+
+  <!-- BTS MEMBERS -->
+  <div class="member-bar">
+    <div class="member"><div class="member-circle rm">RM</div><span class="member-name">RM</span></div>
+    <div class="member"><div class="member-circle jin">JIN</div><span class="member-name">Jin</span></div>
+    <div class="member"><div class="member-circle suga">SUGA</div><span class="member-name">Suga</span></div>
+    <div class="member"><div class="member-circle jhope">J-♡</div><span class="member-name">J-Hope</span></div>
+    <div class="member"><div class="member-circle jimin">JIMIN</div><span class="member-name">Jimin</span></div>
+    <div class="member"><div class="member-circle v">V</div><span class="member-name">V</span></div>
+    <div class="member"><div class="member-circle jk">JK</div><span class="member-name">Jungkook</span></div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-title">💜 Progreso del día</span>
+      <span class="progress-pct" id="prog-label">0 / 0 (0%)</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="day-tabs" id="tabs"></div>
+
+  <!-- SCHEDULE -->
+  <div class="schedule-card" id="schedule"></div>
+
+  <!-- BOTTOM -->
+  <div class="bottom-bar">
+    <button class="reset-btn" onclick="resetDay()">🌸 Reiniciar día</button>
+    <p class="quote">"You are the cause of my euphoria." 💜</p>
+  </div>
+
+  <!-- RULES -->
+  <div class="rules">
+    <h3>💜 Reglas base</h3>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--pink)"></div>Agua 2 a 2.5 litros diarios</div>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--purple)"></div>Creatina todos los días</div>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--mint-deep)"></div>Proteína todos los días</div>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--yellow-deep)"></div>No improvisar comidas fuera del plan</div>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--blue-deep)"></div>Dormir 7 horas o más</div>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--pink-deep)"></div>Martes y jueves: no saltarse caminadora</div>
+    <div class="rule-item"><div class="rule-dot" style="background:var(--purple-deep)"></div>Berberina con almuerzo todos los días</div>
+  </div>
+
 </div>
 
 <script>
-const DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes'];
-const SECS=[
-  {cls:'s-man',icon:'🌸',lbl:'Mañana',items:[
-    {h:'06:30',t:'Despertar ☀️'},{h:'06:35',t:'Fibra + Probiótico + B12 💊'},
-    {h:'06:40',t:'Ducha 🚿'},{h:'07:00',t:'Skincare mañana 🧴✨'},
-    {h:'07:15',t:'Vestirse 👗'},{h:'07:30',t:'Ordenar mochila 🎒'},
-  ]},
-  {cls:'s-via',icon:'🍋',lbl:'Viaje ida',items:[
-    {h:'07:45',t:'Salida de casa 🚪'},{h:'07:45',t:'Viaje al trabajo 🚌'},{h:'08:30',t:'Llegada al trabajo'},
-  ]},
-  {cls:'s-tra',icon:'🌿',lbl:'Trabajo',items:[
-    {h:'09:00',t:'Inicio jornada laboral 💼'},
-    {h:'09:45',t:'Desayuno 🍳'},
-    {h:'12:00',t:'Colación 🍪'},
-    {h:'14:00',t:'Almuerzo + Berberina 💊'},
-    {h:'17:45',t:'Colación 🍎'},
-    {h:'18:30',t:'Magnesio + Citrato de potasio 💊'},
-    {h:'18:30',t:'Fin jornada laboral'},
-    {h:'19:30',t:'Gimnasio 💪'},
-    {h:'20:45',t:'Fin gimnasio'},
-  ]},
-  {cls:'s-via',icon:'🏠',lbl:'Viaje vuelta',items:[
-    {h:'20:45',t:'Viaje a casa 🚌'},
-  ]},
-  {cls:'s-noc',icon:'💜',lbl:'Noche',items:[
-    {h:'21:30',t:'Llegada a casa 🏠'},{h:'21:30',t:'Lavar la loza (llegada) 🍽️'},
-    {h:'21:45',t:'Once + Inositol 💊🍵'},{h:'22:00',t:'Ducha 🚿'},
-    {h:'22:15',t:'Skincare noche 🧴🌙'},{h:'22:30',t:'Masaje / Relajación 💆'},
-    {h:'22:40',t:'Caminata 30 min 🚶'},{h:'23:10',t:'Duolingo 10 min 🦉'},
-    {h:'23:20',t:'Lectura Lezhin 15 min 📖💕'},{h:'23:35',t:'Empacar comida del día siguiente 🥗'},
-    {h:'23:50',t:'Ordenar bolso 👜'},{h:'23:55',t:'Jugar Genshin Impact 🎮'},
-    {h:'00:05',t:'Creatina 💊'},{h:'00:10',t:'Lavar la loza (noche) 🍽️'},
-  ]},
-  {cls:'s-dor',icon:'😴',lbl:'Dormir',items:[
-    {h:'00:20',t:'Prepararse para dormir 🌙'},{h:'00:30',t:'DORMIR 😴  (6h → despertar 06:30)'},
-  ]},
-];
-const TOTAL=SECS.reduce((s,sec)=>s+sec.items.length,0);
-const FLOATS=['🐾','🌸','✨','💕','🌺','🥰','🎀','🌼','💖','💜'];
-const MSGS=['🐾 ¡Tú puedes, campeona! 🐾','🌸 ¡Vas increíble! 🌸','✨ ¡Las huellas te admiran! ✨','💕 ¡Sigue así, princesa! 💕','🎀 ¡Casi terminas el día! 🎀','🥰 ¡Eres la mejor! 🥰','🌺 ¡100%! ¡Orgullosísimas! 🌺'];
-const SK='mcronograma_v7';
-let state={};
-try{const r=localStorage.getItem(SK);if(r)state=JSON.parse(r);}catch(e){}
-DAYS.forEach((_,d)=>{
-  if(!state[d])state[d]={};
-  SECS.forEach((sec,si)=>sec.items.forEach((_,ii)=>{const k=`${si}-${ii}`;if(state[d][k]===undefined)state[d][k]=false;}));
-});
-function save(){try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}}
-let cur=0;
-const AC=new(window.AudioContext||window.webkitAudioContext)();
-function playPop(){try{[880,1100,1320].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.type='sine';o.frequency.setValueAtTime(f,AC.currentTime+i*0.07);g.gain.setValueAtTime(0.15,AC.currentTime+i*0.07);g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+i*0.07+0.18);o.start(AC.currentTime+i*0.07);o.stop(AC.currentTime+i*0.07+0.2);});}catch(e){}}
-function playUncheck(){try{const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.setValueAtTime(500,AC.currentTime);o.frequency.exponentialRampToValueAtTime(320,AC.currentTime+0.15);g.gain.setValueAtTime(0.15,AC.currentTime);g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.2);o.start();o.stop(AC.currentTime+0.2);}catch(e){}}
-function playReset(){try{[500,400,300].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.type='sine';o.frequency.setValueAtTime(f,AC.currentTime+i*0.1);g.gain.setValueAtTime(0.12,AC.currentTime+i*0.1);g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+i*0.1+0.15);o.start(AC.currentTime+i*0.1);o.stop(AC.currentTime+i*0.1+0.18);});}catch(e){}}
-function doneCount(d){return Object.values(state[d]).filter(Boolean).length}
-function spawnFloat(e){const el=document.createElement('div');el.className='float-el';el.textContent=FLOATS[Math.floor(Math.random()*FLOATS.length)];el.style.left=(e?e.clientX-13:window.innerWidth/2)+'px';el.style.top=(e?e.clientY-13:window.innerHeight/2)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),1300);}
-function askReset(){AC.resume();document.getElementById('confirmOverlay').classList.add('show');}
-function closeConfirm(){document.getElementById('confirmOverlay').classList.remove('show');}
-function doReset(){closeConfirm();playReset();SECS.forEach((sec,si)=>sec.items.forEach((_,ii)=>{state[cur][`${si}-${ii}`]=false;}));save();renderTasks();renderProgress();}
-function renderTabs(){document.getElementById('tabs').innerHTML=DAYS.map((d,i)=>`<button class="day-btn${i===cur?' active':''}" onclick="switchDay(${i})">${d}</button>`).join('');}
-function renderProgress(){const n=doneCount(cur),pct=Math.round(n/TOTAL*100);document.getElementById('pbar').style.width=pct+'%';document.getElementById('plabel').textContent=`🐾 ${n} de ${TOTAL} tareas (${pct}%)`;document.getElementById('footer').textContent=MSGS[Math.min(Math.floor(pct/17),MSGS.length-1)];}
-function renderTasks(){
-  document.getElementById('list').innerHTML=SECS.map((sec,si)=>`
-    <div class="${sec.cls}">
-      <div class="sec-header"><span style="font-size:15px">${sec.icon}</span>${sec.lbl}</div>
-      ${sec.items.map((item,ii)=>{const k=`${si}-${ii}`,dn=state[cur][k];return`<div class="task${dn?' done':''}" onclick="toggle(${cur},'${k}',event)"><div class="chk${dn?' on':''}"></div><span class="hora">${item.h}</span><span class="name">${item.t}</span></div>`;}).join('')}
-    </div>`).join('');
+const DAYS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+
+const sectionMeta = {
+  manana:       { label:'🌸 Mañana',        cls:'section-manana' },
+  viaje_ida:    { label:'🚌 Viaje ida',      cls:'section-viaje_ida' },
+  trabajo:      { label:'🌿 Trabajo',        cls:'section-trabajo' },
+  viaje_vuelta: { label:'🏡 Viaje vuelta',   cls:'section-viaje_vuelta' },
+  noche:        { label:'💜 Noche',          cls:'section-noche' },
+  dormir:       { label:'🌙 Dormir',         cls:'section-dormir' },
+  plan:         { label:'✨ Plan del día',   cls:'section-plan' },
+};
+
+const base = {
+  manana: [
+    { t:'06:30', n:'Despertar ☀️' },
+    { t:'06:35', n:'Fibra + Probiótico + B12 + Vitamina C 💊' },
+    { t:'06:40', n:'Ducha 🚿' },
+    { t:'07:00', n:'Skincare mañana 🧴✨' },
+    { t:'07:15', n:'Vestirse 👗' },
+    { t:'07:30', n:'Ordenar mochila / bolso 🎒' },
+  ],
+  viaje_ida: [
+    { t:'07:45', n:'Salida de casa 🚪' },
+    { t:'07:45', n:'Viaje al trabajo 🚌' },
+    { t:'08:30', n:'Llegada al trabajo 🏢' },
+  ],
+  trabajo: [
+    { t:'09:00', n:'Inicio jornada laboral 💼' },
+    { t:'09:45', n:'Desayuno — pan + huevo + leche protein 🍳' },
+    { t:'12:00', n:'Colación — yogurt protein + berries 🫐' },
+    { t:'14:00', n:'Almuerzo + Berberina — lentejas + arroz + 2 huevos + ensalada + fruta 🥗' },
+    { t:'17:45', n:'Colación — fruta o cereal 🍓' },
+    { t:'18:30', n:'Magnesio + Citrato de potasio 💊' },
+    { t:'18:30', n:'Fin jornada laboral 🎉' },
+  ],
+  viaje_vuelta: [
+    { t:'20:45', n:'Viaje a casa 🚌' },
+  ],
+  noche: [
+    { t:'21:30', n:'Llegada a casa 🏡' },
+    { t:'21:30', n:'Lavar la loza (llegada) 🍽️' },
+    { t:'21:45', n:'Once + Inositol — fideos proteicos + 2-3 huevos + scoop proteína 🍝' },
+    { t:'22:00', n:'Ducha 🚿' },
+    { t:'22:15', n:'Skincare noche 🌙✨' },
+    { t:'22:30', n:'Masaje / Relajación 💆' },
+    { t:'22:40', n:'Caminata 30 min 🚶‍♀️' },
+    { t:'22:45', n:'Melatonina 💊🌙' },
+    { t:'23:10', n:'Duolingo 10 min 🦉' },
+    { t:'23:20', n:'Lectura Lezhin 15 min 📖💜' },
+    { t:'23:35', n:'Empacar comida del día siguiente 🥡' },
+    { t:'23:50', n:'Ordenar bolso 👜' },
+    { t:'00:05', n:'Creatina 💪' },
+    { t:'00:10', n:'Lavar la loza (noche) 🍽️' },
+  ],
+  dormir: [
+    { t:'23:45', n:'DORMIR 😴💜 (despertar: 06:30)' },
+  ]
+};
+
+function buildDay(day) {
+  if (day === 'Sábado' || day === 'Domingo') {
+    const extra = day === 'Sábado'
+      ? '🏃‍♀️ Caminadora 45-60 min ritmo moderado'
+      : '🌿 Descanso o caminata suave 20-30 min + preparar comidas de la semana';
+    return [
+      { key:'manana', tasks:[
+        { t:'12:30', n:'Despertar ☀️' },
+        { t:'12:35', n:'Fibra + Probiótico + B12 + Vitamina C 💊' },
+      ]},
+      { key:'plan', tasks:[
+        { t:'', n:'Mismas comidas del plan semanal 🥗' },
+        { t:'', n: extra },
+        { t:'', n:'Creatina + proteína 💪' },
+        { t:'22:45', n:'Melatonina 💊🌙' },
+        { t:'23:45', n:'DORMIR 😴💜' },
+      ]},
+    ];
+  }
+  const d = JSON.parse(JSON.stringify(base));
+  if (['Lunes','Miércoles','Viernes'].includes(day)) {
+    d.trabajo.push({ t:'19:30', n:'Gimnasio 🏋️‍♀️ — remo 30 min + rutina de fuerza' });
+    d.trabajo.push({ t:'20:45', n:'Fin gimnasio 💪✨' });
+  }
+  if (['Martes','Jueves'].includes(day)) {
+    d.trabajo.push({ t:'19:30', n:'Caminadora 20-30 min 🚶‍♀️ (inclinación 5-8%)' });
+  }
+  d.trabajo.sort((a,b) => a.t.localeCompare(b.t));
+  return [
+    { key:'manana',       tasks: d.manana },
+    { key:'viaje_ida',    tasks: d.viaje_ida },
+    { key:'trabajo',      tasks: d.trabajo },
+    { key:'viaje_vuelta', tasks: d.viaje_vuelta },
+    { key:'noche',        tasks: d.noche },
+    { key:'dormir',       tasks: d.dormir },
+  ];
 }
-function toggle(d,k,e){AC.resume();const v=!state[d][k];state[d][k]=v;save();if(v){playPop();spawnFloat(e);}else{playUncheck();}renderTasks();renderProgress();}
-function switchDay(i){cur=i;renderTabs();renderTasks();renderProgress();}
-switchDay(0);
+
+const todayIdx = new Date().getDay();
+let currentDay = DAYS[todayIdx === 0 ? 6 : todayIdx - 1];
+
+function storageKey() { return 'plan_bts_daniela_' + currentDay; }
+function loadChecked() { try { return JSON.parse(localStorage.getItem(storageKey()) || '{}'); } catch(e) { return {}; } }
+function saveChecked(obj) { try { localStorage.setItem(storageKey(), JSON.stringify(obj)); } catch(e) {} }
+
+function render() {
+  renderTabs();
+  renderSchedule();
+}
+
+function renderTabs() {
+  document.getElementById('tabs').innerHTML = DAYS.map(d =>
+    `<div class="tab${d === currentDay ? ' active' : ''}" onclick="switchDay('${d}')">${d}</div>`
+  ).join('');
+}
+
+function renderSchedule() {
+  const sections = buildDay(currentDay);
+  const checked = loadChecked();
+  let total = 0, done = 0;
+  let html = '';
+  sections.forEach(({ key, tasks }) => {
+    const meta = sectionMeta[key];
+    html += `<div class="section-header ${meta.cls}">${meta.label}</div>`;
+    tasks.forEach((task, i) => {
+      const id = key + '_' + i;
+      const isDone = !!checked[id];
+      total++; if (isDone) done++;
+      html += `<div class="task${isDone ? ' done' : ''}" onclick="toggle('${key}',${i})">
+        <div class="checkbox"><span class="check-mark">✓</span></div>
+        <span class="task-time">${task.t}</span>
+        <span class="task-name">${task.n}</span>
+      </div>`;
+    });
+  });
+  document.getElementById('schedule').innerHTML = html;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = `${done} / ${total} (${pct}%)`;
+}
+
+function playCuteSound(isChecking) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (isChecking) {
+      const notes = [523.25, 659.25, 783.99, 1046.5];
+      notes.forEach((freq, i) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.type = 'sine';
+        o.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.07);
+        g.gain.setValueAtTime(0, ctx.currentTime + i * 0.07);
+        g.gain.linearRampToValueAtTime(0.18, ctx.currentTime + i * 0.07 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.07 + 0.18);
+        o.start(ctx.currentTime + i * 0.07);
+        o.stop(ctx.currentTime + i * 0.07 + 0.2);
+      });
+    } else {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.type = 'sine';
+      o.frequency.setValueAtTime(400, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(250, ctx.currentTime + 0.15);
+      g.gain.setValueAtTime(0.12, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+      o.start(ctx.currentTime);
+      o.stop(ctx.currentTime + 0.15);
+    }
+  } catch(e) {}
+}
+
+function toggle(key, idx) {
+  const checked = loadChecked();
+  const id = key + '_' + idx;
+  const isChecking = !checked[id];
+  checked[id] = isChecking;
+  saveChecked(checked);
+  playCuteSound(isChecking);
+  renderSchedule();
+}
+
+function switchDay(day) { currentDay = day; render(); }
+function resetDay() { try { localStorage.removeItem(storageKey()); } catch(e) {} renderSchedule(); }
+
+render();
 </script>
+</body>
+</html>
